@@ -215,4 +215,12 @@ class RectRotBarsStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RectRotBarsStepView {
+            val view : RectRotBarsStepView = RectRotBarsStepView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
