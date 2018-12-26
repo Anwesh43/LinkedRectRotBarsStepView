@@ -38,11 +38,11 @@ fun Canvas.drawRRBNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
     val size : Float = gap / sizeFactor
-    val xGap : Float = size / (rects + 1)
+    val xGap : Float = 2 * size / (rects + 1)
     val sc1 : Float = scale.divideScale(0, 2)
     val sc2 : Float = scale.divideScale(1, 2)
     paint.color = color
-    val barSize : Float = size / 5
+    val barSize : Float = size / 4
     save()
     translate(gap * (i + 1), h/2)
     rotate(90f * sc2)
@@ -54,7 +54,7 @@ fun Canvas.drawRRBNode(i : Int, scale : Float, paint : Paint) {
         for (j in 0..(rects - 1)) {
             val scj : Float = sck.divideScale(j, rects)
             save()
-            translate(xGap, -size/2)
+            translate(-size + xGap * (j + 1), -size/2)
             drawRect(RectF(-barSize/2, -barSize * scj, barSize/2, 0f), paint)
             restore()
         }
@@ -220,7 +220,7 @@ class RectRotBarsStepView(ctx : Context) : View(ctx) {
         fun create(activity : Activity) : RectRotBarsStepView {
             val view : RectRotBarsStepView = RectRotBarsStepView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
