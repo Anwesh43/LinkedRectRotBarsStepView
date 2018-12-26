@@ -41,7 +41,7 @@ fun Canvas.drawRRBNode(i : Int, scale : Float, paint : Paint) {
     val xGap : Float = size / (rects + 1)
     val sc1 : Float = scale.divideScale(0, 2)
     val sc2 : Float = scale.divideScale(1, 2)
-    paint.color = color 
+    paint.color = color
     val barSize : Float = size / 5
     save()
     translate(gap * (i + 1), h/2)
@@ -61,4 +61,22 @@ fun Canvas.drawRRBNode(i : Int, scale : Float, paint : Paint) {
         restore()
     }
     restore()
+}
+
+class RectRotBarsStepView(ctx : Context) : View(ctx) {
+
+    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
