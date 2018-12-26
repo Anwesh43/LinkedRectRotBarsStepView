@@ -193,4 +193,25 @@ class RectRotBarsStepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RectRotBarsStepView) {
+        private val animator : Animator = Animator(view)
+        private val rrbs : RectRotBarsStep = RectRotBarsStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            rrbs.draw(canvas, paint)
+            animator.animate {
+                rrbs.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rrbs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
