@@ -34,6 +34,8 @@ fun Float.mirrorValue(a : Int, b : Int) : Float = (1 - scaleFactor()) * a.invers
 
 fun Float.updateScale(dir : Float, a : Int, b : Int) : Float = mirrorValue(a, b) * dir * scGap
 
+fun Int.mirrorModulo() : Float = 1f - 2 * (this % 2)
+
 fun Canvas.drawRRBNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
@@ -46,7 +48,7 @@ fun Canvas.drawRRBNode(i : Int, scale : Float, paint : Paint) {
     val barSize : Float = size / 4
     save()
     translate(gap * (i + 1), h/2)
-    rotate(90f * sc2)
+    rotate(90f * sc2 * i.mirrorModulo() + 90f * (i % 2))
     drawRect(RectF(-size, -size/2, size, size/2), paint)
     for (k in 0..1) {
         val sck : Float = sc1.divideScale(k, 2)
