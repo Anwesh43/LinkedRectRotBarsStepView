@@ -20,7 +20,7 @@ val scGap: Float = 0.05f
 val sizeFactor : Float = 2.6f
 val strokeFactor : Int = 90
 val color : Int = Color.parseColor("#0D47A1")
-val DELAY : Long = 20
+val DELAY : Long = 15
 
 fun Int.inverse() : Float = 1f / this
 
@@ -144,7 +144,7 @@ class RectRotBarsStepView(ctx : Context) : View(ctx) {
         fun addNeighbor() {
             if (i < nodes - 1) {
                 next = RRBNode(i + 1)
-                prev = next
+                next?.prev = this
             }
         }
         fun draw(canvas : Canvas, paint : Paint) {
